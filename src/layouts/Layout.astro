@@ -2,15 +2,18 @@
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
 
 const {
   title = "HistorIQly — History, Powered by AI",
-  description = "AI-powered conversations, investigations, and stories — bringing history to life. Chat with historical figures, explore the archives, and read history's darkest mysteries told as thrillers."
+  description = "Chat with 140+ historical figures, explore history's strangest stories, and read mysteries told as thrillers. AI-powered conversations, investigations, and stories — bringing history to life.",
+  image = "/og.png"
 } = Astro.props;
 
 const siteUrl = "https://historiqly.com";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const ogImage = new URL(image, siteUrl).toString();
 ---
 
 <!doctype html>
@@ -19,13 +22,16 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="keywords" content="AI history chat, historical figures AI, history mysteries, cold cases, secret societies, lost civilizations, history thrillers, AI-powered history, chat with Einstein, chat with Cleopatra, historical investigations, history blog, narrative non-fiction" />
     <meta name="author" content="HistorIQly" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href={canonicalUrl} />
 
+    <!-- Theme -->
     <meta name="theme-color" content="#5DB585" />
     <meta name="color-scheme" content="dark" />
 
@@ -36,29 +42,64 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="HistorIQly" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@historiqly" />
     <meta name="twitter:url" content={canonicalUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
-    <!-- Structured Data -->
+    <!-- Structured Data: Organization -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
       name: "HistorIQly",
       url: siteUrl,
+      logo: new URL("/og.png", siteUrl).toString(),
       description: "AI-powered conversations, investigations, and stories — bringing history to life.",
-      sameAs: ["https://x.com/historiqly"],
+      sameAs: [
+        "https://x.com/historiqly",
+      ],
+    })} />
+
+    <!-- Structured Data: WebSite (enables sitelinks search box) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "HistorIQly",
+      url: siteUrl,
+      description: "History, Powered by AI. Chat with historical figures, explore mysteries, and read history's greatest thrillers.",
+      potentialAction: [
+        {
+          "@type": "ViewAction",
+          name: "Chat with Historical Figures",
+          target: "https://app.historiqly.com",
+        },
+        {
+          "@type": "ViewAction",
+          name: "Read the Blog",
+          target: "https://blog.historiqly.com",
+        },
+        {
+          "@type": "ViewAction",
+          name: "Read the Thrillers",
+          target: "https://books.historiqly.com",
+        },
+      ],
     })} />
 
     <style>
