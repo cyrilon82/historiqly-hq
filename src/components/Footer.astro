@@ -1,0 +1,114 @@
+---
+const links = [
+  { label: "Chat", href: "https://app.historiqly.com" },
+  { label: "Blog", href: "https://blog.historiqly.com" },
+  { label: "Thrillers", href: "https://books.historiqly.com" },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo">Histor<span class="logo-iq">IQ</span>ly</span>
+      <p class="footer-tagline">History, powered by AI</p>
+    </div>
+
+    <div class="footer-links">
+      {links.map((link) => (
+        <a href={link.href} target="_blank" rel="noopener">{link.label}</a>
+      ))}
+      <a href="https://x.com/historiqly" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      </a>
+    </div>
+
+    <p class="footer-case-closed">Case Closed</p>
+    <p class="footer-copyright">&copy; {year} HistorIQly. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 1.5rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .footer-logo {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--foreground);
+    letter-spacing: -0.02em;
+  }
+
+  .logo-iq {
+    color: var(--primary);
+  }
+
+  .footer-tagline {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+  }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-links a {
+    color: var(--muted-foreground);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .footer-links a:hover {
+    color: var(--primary);
+  }
+
+  .footer-case-closed {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 0.55rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--muted-foreground);
+    opacity: 0.3;
+    border: 1px solid currentColor;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    transform: rotate(-2deg);
+  }
+
+  .footer-copyright {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    opacity: 0.6;
+  }
+</style>

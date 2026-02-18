@@ -1,0 +1,107 @@
+/*
+  HistorIQly HQ — Shared Design Tokens
+*/
+
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary: #5DB585;
+    --primary-dim: rgba(93, 181, 133, 0.08);
+    --primary-hover: #6FC494;
+    --primary-glow: rgba(93, 181, 133, 0.25); /* Increased opacity */
+
+    --background: #050505; /* Slightly darker */
+    --surface: #0f0f0f;
+    --surface-elevated: #1a1a1a;
+    --surface-hover: #222222;
+
+    --foreground: #FFFFFF;
+    --foreground-muted: #E5E5E5;
+    --border: rgba(255, 255, 255, 0.08); /* Slightly more visible */
+    --border-strong: rgba(255, 255, 255, 0.15);
+    --muted: #888;
+    --muted-foreground: #b0b0b0;
+
+    --radius-s: 8px; /* Slightly rounder */
+    --radius-m: 16px;
+    --radius-l: 24px;
+
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.6);
+    --shadow-glow: 0 0 60px var(--primary-glow);
+
+    --gradient-primary: linear-gradient(135deg, var(--primary) 0%, #4a9e70 100%);
+    --gradient-surface: linear-gradient(180deg, var(--surface) 0%, var(--surface-elevated) 100%);
+
+    --transition-fast: 200ms cubic-bezier(0.2, 0, 0, 1);
+    --transition-base: 350ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  a:hover {
+    color: var(--primary-hover);
+  }
+
+  ::selection {
+    background: rgba(93, 181, 133, 0.2);
+    color: #fff;
+  }
+}
+
+/* Fade-in animation for scroll reveals */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Investigation board grid background */
+.board-grid {
+  background-image:
+    linear-gradient(rgba(93, 181, 133, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(93, 181, 133, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

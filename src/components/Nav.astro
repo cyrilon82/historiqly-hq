@@ -1,0 +1,165 @@
+---
+const links = [
+  { label: "Chat", href: "https://app.historiqly.com" },
+  { label: "Blog", href: "https://blog.historiqly.com" },
+  { label: "Thrillers", href: "https://books.historiqly.com" },
+];
+---
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <span class="brand-name">Histor<span class="brand-iq">IQ</span>ly</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      {links.map((link) => (
+        <a href={link.href} class="nav-link" target="_blank" rel="noopener">
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+
+  toggle?.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    links?.classList.toggle('open');
+  });
+</script>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    z-index: 100;
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .brand-name {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--foreground);
+    letter-spacing: -0.02em;
+  }
+
+  .brand-iq {
+    color: var(--primary);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    color: var(--muted-foreground);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+  }
+
+  .nav-link:hover {
+    color: var(--foreground);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 28px;
+    height: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--foreground);
+    transition: all 0.3s;
+    border-radius: 1px;
+  }
+
+  .nav-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+  }
+
+  .nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: rgba(17, 17, 17, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 1.5rem;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .nav-link {
+      font-size: 1rem;
+      padding: 0.5rem 0;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+  }
+</style>
