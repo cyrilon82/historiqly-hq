@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Page Not Found — HistorIQly" description="This page has moved to app.historiqly.com">
+  <Nav />
+  <main class="flex-1 flex items-center justify-center min-h-[60vh] px-6">
+    <div class="text-center max-w-lg">
+      <h1 class="text-4xl font-bold text-white mb-4">Page Not Found</h1>
+      <p class="text-gray-400 mb-8" id="message">
+        This page may have moved. Redirecting you...
+      </p>
+      <a href="https://app.historiqly.com" class="inline-block px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors">
+        Go to HistorIQly App
+      </a>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  // Redirect old app URLs to app.historiqly.com
+  const path = window.location.pathname;
+  const appPaths = ['/ai-historical-figures', '/pricing', '/signup', '/login', '/privacy', '/terms'];
+  const shouldRedirect = appPaths.some(p => path === p || path.startsWith(p + '/'));
+
+  if (shouldRedirect) {
+    // Meta-refresh style redirect for SEO + immediate JS redirect
+    window.location.replace('https://app.historiqly.com' + path);
+  } else {
+    // Not an app URL — show the 404 message
+    const msg = document.getElementById('message');
+    if (msg) msg.textContent = "The page you're looking for doesn't exist.";
+  }
+</script>
