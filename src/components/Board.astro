@@ -22,13 +22,23 @@ const cases = [
   },
   {
     file: "FILE-03",
+    name: "Chronicles",
+    stamp: "FIRST PERSON",
+    stampColor: "#D4A017",
+    href: "https://chronicles.historiqly.com",
+    description: "History in their own words. First-person narratives of the world's most fascinating figures — then continue the conversation.",
+    cta: "Read the Chronicles",
+    rotation: "1deg",
+  },
+  {
+    file: "FILE-04",
     name: "Thrillers",
     stamp: "NEW EVIDENCE",
     stampColor: "#C44",
     href: "https://books.historiqly.com",
     description: "Lost civilizations. Secret societies. Unsolved crimes. History's greatest mysteries, written as thrillers you can't put down.",
     cta: "Read the Thrillers",
-    rotation: "1deg",
+    rotation: "-0.5deg",
   },
 ];
 ---
@@ -113,8 +123,8 @@ const cases = [
 
   .board-grid-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
     margin-bottom: 7rem;
     perspective: 1000px;
   }
@@ -314,6 +324,13 @@ const cases = [
     color: var(--background);
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(93, 181, 133, 0.35);
+  }
+
+  @media (max-width: 1024px) {
+    .board-grid-cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
   }
 
   @media (max-width: 768px) {
