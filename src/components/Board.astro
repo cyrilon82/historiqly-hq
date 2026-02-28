@@ -337,29 +337,65 @@ const cases = [
   }
 
   @media (max-width: 640px) {
-    .board { padding: 0 1rem 2.5rem; margin-top: 0.5rem; flex: none; }
+    .board {
+      padding: 0 0.75rem 1rem;
+      margin-top: 0;
+      flex: none;
+    }
     .board-cards {
-      flex-direction: column;
-      align-items: center;
-      gap: 1.25rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.625rem;
     }
     .case-card {
       width: 100%;
-      max-width: 360px;
+      margin: 0;
+      border-radius: 10px;
     }
     .case-image {
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 4 / 3;
+    }
+    .case-image-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.05) 0%,
+        rgba(0, 0, 0, 0.15) 30%,
+        rgba(21, 19, 14, 0.8) 65%,
+        rgba(21, 19, 14, 1) 100%
+      );
+    }
+    .case-header {
+      top: 0.4rem;
+      left: 0.4rem;
+      right: 0.4rem;
+    }
+    .case-file {
+      font-size: 0.5rem;
+      padding: 0.1rem 0.3rem;
+    }
+    .case-label {
+      font-size: 0.4rem;
+      padding: 0.1rem 0.3rem;
     }
     .case-name {
-      font-size: 1.4rem;
+      font-size: 1.1rem;
+      bottom: 0.2rem;
+      left: 0.5rem;
+      right: 0.5rem;
     }
     .case-body {
-      padding: 0.6rem 0.85rem 0.9rem;
+      padding: 0.35rem 0.5rem 0.5rem;
+    }
+    .case-subtitle {
+      font-size: 0.45rem;
+      margin-bottom: 0.2rem;
     }
     .case-desc {
-      font-size: 0.8rem;
-      line-height: 1.45;
+      display: none;
     }
-    .case-card:hover { transform: translateY(-4px); }
+    .case-cta {
+      font-size: 0.6rem;
+    }
+    .case-card:hover { transform: translateY(-2px); }
   }
 </style>
