@@ -3,265 +3,305 @@ const cases = [
   {
     file: "FILE-01",
     name: "Blog",
-    stamp: "DECLASSIFIED",
-    stampColor: "#D4A017",
+    label: "INSIGHTS",
+    borderColor: "#D4A017",
     href: "https://blog.historiqly.com",
-    description: "Deep dives into history's strangest stories. Cold cases, myths, and hidden truths — explored with evidence and AI.",
-    cta: "Explore the Cases",
-    rotation: "-1.5deg",
+    image: "/Blog.webp",
+    subtitle: "DEEP-DIVING MYSTERIES",
+    description: "Deep-dives into history's strangest stories. Cold cases, myths, and hidden truths — explored with evidence and AI.",
+    cta: "Explore the Blogs",
   },
   {
     file: "FILE-02",
     name: "Chat",
-    stamp: "ACTIVE",
-    stampColor: "#5DB585",
+    label: "DIALOG",
+    borderColor: "#14b8a6",
     href: "https://app.historiqly.com",
+    image: "/Chat.webp",
+    subtitle: "CONVERSE WITH THE PAST",
     description: "Chat with Einstein, Cleopatra, and 140+ historical figures. AI-powered conversations grounded in real evidence.",
     cta: "Chat with the Past",
-    rotation: "0.5deg",
   },
   {
     file: "FILE-03",
     name: "Chronicles",
-    stamp: "FIRST PERSON",
-    stampColor: "#D4A017",
+    label: "NARRATIVES",
+    borderColor: "#d97706",
     href: "https://chronicles.historiqly.com",
+    image: "/Chronicles.webp",
+    subtitle: "IMMERSIVE HISTORICAL STORIES",
     description: "History in their own words. First-person narratives of the world's most fascinating figures — then continue the conversation.",
     cta: "Read the Chronicles",
-    rotation: "1deg",
   },
   {
     file: "FILE-04",
     name: "Thrillers",
-    stamp: "NEW EVIDENCE",
-    stampColor: "#C44",
+    label: "CLASSIFIED",
+    borderColor: "#C44",
     href: "https://books.historiqly.com",
+    image: "/Thrillers.webp",
+    subtitle: "UNSOLVED ENIGMA FILES",
     description: "Lost civilizations. Secret societies. Unsolved crimes. History's greatest mysteries, written as thrillers you can't put down.",
     cta: "Read the Thrillers",
-    rotation: "-0.5deg",
   },
 ];
 ---
 
-<section class="board board-grid" id="board">
+<section class="board" id="board">
   <div class="board-inner">
-    <div class="board-label">The Board</div>
+    <!-- Connecting teal lines -->
+    <svg class="connecting-lines" viewBox="0 0 1200 500" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <filter id="glow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <path d="M180 250 Q400 120 600 230" stroke="rgba(20,184,166,0.1)" stroke-width="1" fill="none" filter="url(#glow)"/>
+      <path d="M600 230 Q800 140 1020 250" stroke="rgba(20,184,166,0.1)" stroke-width="1" fill="none" filter="url(#glow)"/>
+      <path d="M140 200 Q600 30 1060 200" stroke="rgba(20,184,166,0.05)" stroke-width="0.8" fill="none" filter="url(#glow)"/>
+      <circle cx="180" cy="250" r="2.5" fill="rgba(20,184,166,0.2)" filter="url(#glow)"/>
+      <circle cx="440" cy="180" r="1.5" fill="rgba(20,184,166,0.15)" filter="url(#glow)"/>
+      <circle cx="600" cy="230" r="2.5" fill="rgba(20,184,166,0.2)" filter="url(#glow)"/>
+      <circle cx="760" cy="185" r="1.5" fill="rgba(20,184,166,0.15)" filter="url(#glow)"/>
+      <circle cx="1020" cy="250" r="2.5" fill="rgba(20,184,166,0.2)" filter="url(#glow)"/>
+    </svg>
 
-    <div class="board-grid-cards">
+    <div class="board-cards">
       {cases.map((c, i) => (
         <a
           href={c.href}
           class="case-card fade-in"
           target="_blank"
           rel="noopener"
-          style={`--rotation: ${c.rotation}; --accent: ${c.stampColor}; transition-delay: ${i * 120}ms`}
+          style={`--bdr: ${c.borderColor}; transition-delay: ${i * 100}ms`}
+          data-card={i}
         >
-          <!-- Pin -->
-          <div class="pin"></div>
-
-          <!-- Card header -->
-          <div class="case-header">
-            <span class="case-file">{c.file}</span>
-            <span class="case-stamp" style={`color: ${c.stampColor}; border-color: ${c.stampColor}`}>
-              {c.stamp}
-            </span>
+          <div class="case-image">
+            <img src={c.image} alt={c.name} loading="lazy" />
+            <div class="case-image-overlay"></div>
+            <div class="case-header">
+              <span class="case-file">{c.file}</span>
+              <span class="case-label">{c.label}</span>
+            </div>
+            <h3 class="case-name">{c.name}</h3>
           </div>
 
-          <!-- Card body -->
-          <h3 class="case-name">{c.name}</h3>
-          <p class="case-desc">{c.description}</p>
-
-          <!-- CTA -->
-          <span class="case-cta">
-            {c.cta}
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </span>
+          <div class="case-body">
+            <span class="case-subtitle">{c.subtitle}</span>
+            <p class="case-desc">{c.description}</p>
+            <span class="case-cta">
+              {c.cta}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
         </a>
       ))}
-    </div>
-
-    <!-- CTA section -->
-    <div class="cta-section fade-in">
-      <div class="cta-content">
-        <h2>Talk to History</h2>
-        <p>Chat with 140+ historical figures about mysteries, history, and conspiracies.</p>
-        <a href="https://app.historiqly.com" class="cta-btn" target="_blank" rel="noopener">
-          Start Chatting
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
     </div>
   </div>
 </section>
 
 <style>
   .board {
-    padding: 1rem 1.5rem 5rem;
+    padding: 0 2rem 2rem;
+    margin-top: 1rem;
     position: relative;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
   }
 
   .board-inner {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
+    position: relative;
+    width: 100%;
   }
 
-  .board-label {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--muted-foreground);
-    text-align: center;
-    margin-bottom: 3rem;
-    opacity: 0.6;
+  .connecting-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
   }
 
-  .board-grid-cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    margin-bottom: 7rem;
-    perspective: 1000px;
+  .board-cards {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
   }
 
-  /* Case file card */
+  /* Card */
   .case-card {
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 2.5rem 2rem 2rem;
-    background: #1a1815;
-    border: 1px solid var(--border);
-    border-top: 3px solid var(--accent);
-    border-radius: 6px;
+    width: 24%;
+    margin: 0 -2px;
+    border-radius: 14px;
     text-decoration: none;
     color: inherit;
-    transform: rotate(var(--rotation)) translateY(0);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     overflow: hidden;
-    box-shadow: 
-      0 4px 6px -1px rgba(0, 0, 0, 0.3),
-      0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--bdr);
+    background: linear-gradient(180deg, rgba(28, 26, 22, 0.85) 0%, rgba(18, 16, 12, 0.95) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+      0 8px 24px -4px rgba(0, 0, 0, 0.6),
+      0 16px 40px -8px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
-  /* Faint paper texture */
-  .case-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-    opacity: 0.5;
-    pointer-events: none;
-  }
+
+
+  /* Arc: outer cards lower + rotated, inner cards higher */
+  .case-card[data-card="0"] { transform: rotate(-2.5deg) translateY(14px); z-index: 1; }
+  .case-card[data-card="1"] { transform: rotate(-0.5deg) translateY(-8px); z-index: 2; }
+  .case-card[data-card="2"] { transform: rotate(0.5deg) translateY(-8px); z-index: 2; }
+  .case-card[data-card="3"] { transform: rotate(2.5deg) translateY(14px); z-index: 1; }
 
   .case-card:hover {
-    transform: rotate(0deg) translateY(-12px) scale(1.02);
+    transform: rotate(0deg) translateY(-16px) scale(1.04);
     box-shadow:
-      0 20px 48px -12px rgba(0, 0, 0, 0.6),
-      0 0 0 1px var(--accent);
-    background: #1f1d1a;
+      0 24px 60px -10px rgba(0, 0, 0, 0.8),
+      0 0 0 1px var(--bdr),
+      0 0 40px -12px var(--bdr),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
     z-index: 10;
   }
 
-  /* Pin */
-  .pin {
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 16px;
-    height: 16px;
-    background: radial-gradient(circle at 40% 35%, #e55 30%, #a33 100%);
-    border-radius: 50%;
-    box-shadow:
-      0 2px 5px rgba(0, 0, 0, 0.7),
-      inset 0 1px 2px rgba(255, 255, 255, 0.4);
-    z-index: 2;
+  /* Image */
+  .case-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    overflow: hidden;
   }
 
-  /* Pin shadow */
-  .pin::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
+  .case-image img {
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
-    border-radius: 50%;
-    transform: translate(-4px, 4px) scale(0.8);
-    filter: blur(2px);
-    z-index: -1;
+    object-fit: cover;
+    transition: transform 0.5s ease;
   }
 
-  /* Case header */
+  .case-card:hover .case-image img {
+    transform: scale(1.05);
+  }
+
+  /* Stronger gradient for text readability */
+  .case-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.08) 0%,
+      rgba(0, 0, 0, 0.25) 35%,
+      rgba(21, 19, 14, 0.85) 72%,
+      rgba(21, 19, 14, 1) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* File label & stamp */
   .case-header {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    right: 0.6rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px dashed rgba(255,255,255,0.1);
+    z-index: 2;
   }
 
   .case-file {
     font-family: 'Space Grotesk', system-ui, sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.65);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+  }
+
+  .case-label {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 0.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #cc4444;
+    padding: 0.15rem: 0.45rem;
+    border: 1.5px solid #cc4444;
+    border-radius: 2px;
+    transform: rotate(-4deg);
+    opacity: 0.85;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+  }
+
+  /* Title on image */
+  .case-name {
+    position: absolute;
+    bottom: 0.35rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--foreground);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    z-index: 2;
+    margin: 0;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.5);
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .case-card:hover .case-name { 
+    color: var(--bdr); 
+    transform: translateY(-2px);
+  }
+
+  /* Body — improved readability */
+  .case-body {
+    padding: 0.5rem 0.75rem 0.85rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .case-subtitle {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 0.55rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--muted-foreground);
-    opacity: 0.7;
-  }
-
-  .case-stamp {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
-    font-size: 0.6rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    padding: 0.2rem 0.6rem;
-    border: 2px solid;
-    border-radius: 3px;
-    transform: rotate(-5deg);
-    opacity: 0.9;
-    mix-blend-mode: screen;
-  }
-
-  .case-name {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--foreground);
-    margin-bottom: 1rem;
-    transition: color var(--transition-fast);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  .case-card:hover .case-name {
-    color: var(--accent);
+    opacity: 0.6;
+    margin-bottom: 0.35rem;
   }
 
   .case-desc {
-    font-size: 0.95rem;
-    color: var(--muted-foreground);
-    line-height: 1.7;
+    font-size: 0.82rem;
+    color: var(--foreground-muted);
+    line-height: 1.5;
     flex-grow: 1;
-    margin-bottom: 2rem;
+    margin-bottom: 0.6rem;
   }
 
   .case-cta {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
     font-family: 'Space Grotesk', system-ui, sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -270,87 +310,54 @@ const cases = [
   }
 
   .case-card:hover .case-cta {
-    color: var(--accent);
-    gap: 0.8rem;
+    color: var(--bdr);
+    gap: 0.65rem;
   }
 
-  /* CTA section */
-  .cta-section {
-    position: relative;
-    text-align: center;
-    padding: 5rem 2rem;
-    border-top: 1px solid var(--border);
-    background: radial-gradient(circle at center, rgba(30, 30, 30, 0.4) 0%, transparent 70%);
-  }
-
-  .cta-content {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .cta-section h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--foreground);
-    letter-spacing: -0.02em;
-  }
-
-  .cta-section p {
-    font-size: 1.15rem;
-    color: var(--muted-foreground);
-    margin: 0 auto 2.5rem;
-    line-height: 1.6;
-  }
-
-  .cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 1rem 2.5rem;
-    background: var(--primary);
-    color: var(--background);
-    font-weight: 700;
-    font-size: 1.05rem;
-    border-radius: 9999px;
-    text-decoration: none;
-    transition: all var(--transition-fast);
-    box-shadow: 0 4px 20px rgba(93, 181, 133, 0.25);
-  }
-
-  .cta-btn:hover {
-    background: var(--primary-hover);
-    color: var(--background);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(93, 181, 133, 0.35);
-  }
-
+  /* Responsive */
   @media (max-width: 1024px) {
-    .board-grid-cards {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .board-grid-cards {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-
-    .case-card {
-      transform: rotate(0deg);
-      padding: 2rem 1.5rem;
-    }
-
-    .case-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .cta-btn {
-      width: 100%;
+    .board-cards {
+      flex-wrap: wrap;
+      gap: 1.25rem;
       justify-content: center;
     }
+    .case-card {
+      width: 45%;
+      margin: 0;
+    }
+    .case-card[data-card="0"],
+    .case-card[data-card="1"],
+    .case-card[data-card="2"],
+    .case-card[data-card="3"] {
+      transform: none;
+    }
+    .connecting-lines { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .board { padding: 0 1rem 2.5rem; margin-top: 0.5rem; flex: none; }
+    .board-cards {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .case-card {
+      width: 100%;
+      max-width: 360px;
+    }
+    .case-image {
+      aspect-ratio: 16 / 10;
+    }
+    .case-name {
+      font-size: 1.4rem;
+    }
+    .case-body {
+      padding: 0.6rem 0.85rem 0.9rem;
+    }
+    .case-desc {
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+    .case-card:hover { transform: translateY(-4px); }
   }
 </style>

@@ -46,9 +46,9 @@ const links = [
     left: 0;
     right: 0;
     height: 56px;
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(14, 13, 12, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     z-index: 100;
   }
@@ -67,19 +67,18 @@ const links = [
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 0.625rem;
   }
 
   .brand-name {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
-    font-size: 1.25rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--foreground);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
 
   .brand-iq {
-    color: var(--primary);
+    color: var(--teal);
   }
 
   .nav-links {
@@ -93,11 +92,14 @@ const links = [
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 500;
-    transition: color var(--transition-fast);
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
   }
 
   .nav-link:hover {
     color: var(--foreground);
+    border-bottom-color: var(--primary);
   }
 
   .nav-toggle {
@@ -142,7 +144,7 @@ const links = [
       left: 0;
       right: 0;
       flex-direction: column;
-      background: rgba(17, 17, 17, 0.95);
+      background: rgba(14, 13, 12, 0.95);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       padding: 1.5rem;

@@ -7,10 +7,69 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
+  <!-- Page-level world map background -->
+  <div class="page-bg" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 768px)" srcset="/Landing_mobile.webp" type="image/webp" />
+      <source media="(max-width: 768px)" srcset="/Landing_mobile.png" type="image/png" />
+      <source srcset="/Landing.webp" type="image/webp" />
+      <img src="/Landing.png" alt="" />
+    </picture>
+    <div class="page-bg-overlay"></div>
+  </div>
+
   <Nav />
-  <main>
+  <main class="page-main">
     <Hero />
     <Board />
   </main>
   <Footer />
 </Layout>
+
+<style>
+  .page-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .page-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .page-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(14, 13, 12, 0.82) 0%, rgba(14, 13, 12, 0.65) 30%, rgba(14, 13, 12, 0.65) 55%, rgba(14, 13, 12, 0.88) 80%, rgba(14, 13, 12, 0.97) 100%),
+      radial-gradient(ellipse at 50% 35%, transparent 0%, rgba(14, 13, 12, 0.55) 50%, rgba(14, 13, 12, 0.9) 100%);
+  }
+
+  .page-main {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 56px;
+  }
+
+  @media (max-width: 768px) {
+    .page-main {
+      flex: none;
+      display: block;
+    }
+    .page-bg img {
+      object-position: center center;
+    }
+    .page-bg-overlay {
+      background:
+        linear-gradient(to bottom, rgba(14, 13, 12, 0.78) 0%, rgba(14, 13, 12, 0.55) 25%, rgba(14, 13, 12, 0.55) 50%, rgba(14, 13, 12, 0.82) 75%, rgba(14, 13, 12, 0.95) 100%),
+        radial-gradient(ellipse at 50% 40%, transparent 0%, rgba(14, 13, 12, 0.5) 50%, rgba(14, 13, 12, 0.85) 100%);
+    }
+  }
+</style>
