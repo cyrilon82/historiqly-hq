@@ -77,7 +77,8 @@
       min-height: 100svh;
       display: flex;
       flex-direction: column;
-      overflow: visible;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
   }
 
