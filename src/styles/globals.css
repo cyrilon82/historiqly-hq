@@ -58,6 +58,8 @@
   }
 
   body.page-shell {
+    position: relative;
+    min-height: 100vh;
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
@@ -65,9 +67,16 @@
   }
 
   @media (max-width: 768px) {
+    html {
+      scroll-behavior: auto;
+    }
+
     body.page-shell {
+      height: auto;
+      min-height: 100vh;
+      min-height: 100svh;
       display: block;
-      overflow-y: auto;
+      overflow: visible;
     }
   }
 
