@@ -7,7 +7,7 @@ interface Props {
 
 const {
   title = "HistorIQly — History, Powered by AI",
-  description = "Chat with 140+ historical figures, explore history's strangest stories, read first-person chronicles, and dive into mysteries told as thrillers. AI-powered conversations, investigations, and stories — bringing history to life.",
+  description = "Chat with 140+ historical figures, explore history's strangest stories, read first-person chronicles, and dive into narrative non-fiction history books. AI-powered conversations, investigations, and stories — bringing history to life.",
   image = "/og.png"
 } = Astro.props;
 
@@ -82,7 +82,7 @@ const ogImage = new URL(image, siteUrl).toString();
       "@type": "WebSite",
       name: "HistorIQly",
       url: siteUrl,
-      description: "History, Powered by AI. Chat with historical figures, read first-person chronicles, explore mysteries, and dive into history's greatest thrillers.",
+      description: "History, Powered by AI. Chat with historical figures, read first-person chronicles, explore mysteries, and read narrative non-fiction history books.",
       potentialAction: [
         {
           "@type": "ViewAction",
@@ -101,7 +101,7 @@ const ogImage = new URL(image, siteUrl).toString();
         },
         {
           "@type": "ViewAction",
-          name: "Read the Thrillers",
+          name: "Read the Books",
           target: "https://books.historiqly.com",
         },
       ],
