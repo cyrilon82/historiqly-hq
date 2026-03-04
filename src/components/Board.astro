@@ -1,93 +1,150 @@
 ---
 const cases = [
   {
-    file: "FILE-01",
     name: "Blog",
-    label: "INSIGHTS",
-    borderColor: "#D4A017",
     href: "https://blog.historiqly.com",
     image: "/Blog.webp",
     subtitle: "DEEP-DIVING MYSTERIES",
-    description: "Deep-dives into history's strangest stories. Cold cases, myths, and hidden truths — explored with evidence and AI.",
+    description: "Cold cases, myths, and hidden truths — explored with evidence and AI.",
     cta: "Explore the Blogs",
+    icon: "compass",
   },
   {
-    file: "FILE-02",
     name: "Chat",
-    label: "DIALOG",
-    borderColor: "#14b8a6",
     href: "https://app.historiqly.com",
     image: "/Chat.webp",
     subtitle: "CONVERSE WITH THE PAST",
-    description: "Chat with Einstein, Cleopatra, and 140+ historical figures. AI-powered conversations grounded in real evidence.",
+    description: "Talk to Einstein, Cleopatra, and 140+ historical figures. AI-powered and evidence-based.",
     cta: "Chat with the Past",
+    icon: "quill",
   },
   {
-    file: "FILE-03",
     name: "Chronicles",
-    label: "NARRATIVES",
-    borderColor: "#d97706",
     href: "https://chronicles.historiqly.com",
     image: "/Chronicles.webp",
     subtitle: "IMMERSIVE HISTORICAL STORIES",
-    description: "History in their own words. First-person narratives of the world's most fascinating figures — then continue the conversation.",
+    description: "History in their own words. First-person narratives of the world's most fascinating figures.",
     cta: "Read the Chronicles",
+    icon: "scroll",
   },
   {
-    file: "FILE-04",
     name: "Mysteries",
-    label: "CLASSIFIED",
-    borderColor: "#C44",
     href: "https://books.historiqly.com",
     image: "/Thrillers.webp",
     subtitle: "UNSOLVED ENIGMA FILES",
-    description: "Lost civilizations. Secret societies. Unsolved crimes. History's greatest mysteries, written as gripping narrative non-fiction.",
+    description: "Lost civilizations. Secret societies. Unsolved crimes. Gripping narrative non-fiction.",
     cta: "Read the Books",
+    icon: "lock",
   },
+];
+
+const fan = [
+  { angle: -8, y: 14 },
+  { angle: -2.8, y: 2 },
+  { angle: 2.8, y: 2 },
+  { angle: 8, y: 14 },
 ];
 ---
 
 <section class="board" id="board">
   <div class="board-inner">
-    <!-- Connecting teal lines -->
-    <svg class="connecting-lines" viewBox="0 0 1200 500" preserveAspectRatio="none" aria-hidden="true">
-      <defs>
-        <filter id="glow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      </defs>
-      <path d="M180 250 Q400 120 600 230" stroke="rgba(20,184,166,0.1)" stroke-width="1" fill="none" filter="url(#glow)"/>
-      <path d="M600 230 Q800 140 1020 250" stroke="rgba(20,184,166,0.1)" stroke-width="1" fill="none" filter="url(#glow)"/>
-      <path d="M140 200 Q600 30 1060 200" stroke="rgba(20,184,166,0.05)" stroke-width="0.8" fill="none" filter="url(#glow)"/>
-      <circle cx="180" cy="250" r="2.5" fill="rgba(20,184,166,0.2)" filter="url(#glow)"/>
-      <circle cx="440" cy="180" r="1.5" fill="rgba(20,184,166,0.15)" filter="url(#glow)"/>
-      <circle cx="600" cy="230" r="2.5" fill="rgba(20,184,166,0.2)" filter="url(#glow)"/>
-      <circle cx="760" cy="185" r="1.5" fill="rgba(20,184,166,0.15)" filter="url(#glow)"/>
-      <circle cx="1020" cy="250" r="2.5" fill="rgba(20,184,166,0.2)" filter="url(#glow)"/>
-    </svg>
-
-    <div class="board-cards">
+    <div class="board-fan">
       {cases.map((c, i) => (
         <a
           href={c.href}
-          class="case-card fade-in"
+          class="product-card"
           target="_blank"
           rel="noopener"
-          style={`--bdr: ${c.borderColor}; transition-delay: ${i * 100}ms`}
-          data-card={i}
+          style={`--angle: ${fan[i].angle}deg; --lift: ${fan[i].y}px; --delay: ${i * 130 + 200}ms`}
         >
-          <div class="case-image">
+          {/* Corner ornaments */}
+          <svg class="corner-ornament top-left" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 38V8C2 4.68629 4.68629 2 8 2H38" stroke="currentColor" stroke-width="1.5" />
+            <path d="M2 28V14C2 7.37258 7.37258 2 14 2H28" stroke="currentColor" stroke-width="0.75" opacity="0.5" />
+            <circle cx="2" cy="38" r="2" fill="currentColor" />
+            <circle cx="38" cy="2" r="2" fill="currentColor" />
+            <path d="M8 2L2 8" stroke="currentColor" stroke-width="0.75" opacity="0.6" />
+          </svg>
+          <svg class="corner-ornament top-right" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M38 38V8C38 4.68629 35.3137 2 32 2H2" stroke="currentColor" stroke-width="1.5" />
+            <path d="M38 28V14C38 7.37258 32.6274 2 26 2H12" stroke="currentColor" stroke-width="0.75" opacity="0.5" />
+            <circle cx="38" cy="38" r="2" fill="currentColor" />
+            <circle cx="2" cy="2" r="2" fill="currentColor" />
+            <path d="M32 2L38 8" stroke="currentColor" stroke-width="0.75" opacity="0.6" />
+          </svg>
+          <svg class="corner-ornament bottom-left" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2V32C2 35.3137 4.68629 38 8 38H38" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="2" cy="2" r="2" fill="currentColor" />
+            <circle cx="38" cy="38" r="2" fill="currentColor" />
+            <path d="M2 32L8 38" stroke="currentColor" stroke-width="0.75" opacity="0.6" />
+          </svg>
+          <svg class="corner-ornament bottom-right" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M38 2V32C38 35.3137 35.3137 38 32 38H2" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="38" cy="2" r="2" fill="currentColor" />
+            <circle cx="2" cy="38" r="2" fill="currentColor" />
+            <path d="M38 32L32 38" stroke="currentColor" stroke-width="0.75" opacity="0.6" />
+          </svg>
+
+          {/* Card image */}
+          <div class="card-img">
             <img src={c.image} alt={c.name} loading="lazy" />
-            <div class="case-image-overlay"></div>
-            <div class="case-header">
-              <span class="case-file">{c.file}</span>
-              <span class="case-label">{c.label}</span>
-            </div>
-            <h3 class="case-name">{c.name}</h3>
+            <div class="card-overlay"></div>
           </div>
 
-          <div class="case-body">
-            <span class="case-subtitle">{c.subtitle}</span>
-            <p class="case-desc">{c.description}</p>
-            <span class="case-cta">
+          {/* Thematic icon */}
+          <div class="card-icon">
+            {c.icon === "compass" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88" fill="currentColor" opacity="0.3" />
+                <polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88" />
+              </svg>
+            )}
+            {c.icon === "quill" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 2C14 4 10.5 8.5 9 13L11 15C15.5 13.5 20 10 22 4C22 4 20 2 20 2Z" fill="currentColor" opacity="0.15" />
+                <path d="M20 2C14 4 10.5 8.5 9 13L11 15C15.5 13.5 20 10 22 4C22 4 20 2 20 2Z" />
+                <path d="M9 13L5 21L11 15" />
+                <path d="M5 21L3 19" />
+              </svg>
+            )}
+            {c.icon === "scroll" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 21H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <path d="M16 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <rect x="8" y="1" width="8" height="22" rx="2" fill="currentColor" opacity="0.1" />
+                <rect x="8" y="1" width="8" height="22" rx="2" />
+                <line x1="11" y1="7" x2="13" y2="7" opacity="0.5" />
+                <line x1="11" y1="11" x2="13" y2="11" opacity="0.5" />
+                <line x1="11" y1="15" x2="13" y2="15" opacity="0.5" />
+              </svg>
+            )}
+            {c.icon === "lock" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" fill="currentColor" opacity="0.1" />
+                <rect x="3" y="11" width="18" height="11" rx="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                <circle cx="12" cy="16" r="1" fill="currentColor" />
+              </svg>
+            )}
+          </div>
+
+          {/* Card body */}
+          <div class="card-body">
+            <h3 class="card-title">{c.name}</h3>
+
+            {/* Decorative divider */}
+            <div class="card-divider">
+              <span class="divider-line"></span>
+              <svg class="divider-glyph" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 2L9.5 6.5L14 8L9.5 9.5L8 14L6.5 9.5L2 8L6.5 6.5Z" />
+              </svg>
+              <span class="divider-line"></span>
+            </div>
+
+            <span class="card-sub">{c.subtitle}</span>
+            <p class="card-desc">{c.description}</p>
+            <span class="card-cta">
               {c.cta}
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
@@ -99,303 +156,453 @@ const cases = [
 </section>
 
 <style>
+  /* ── Section ── */
   .board {
-    padding: 0 2rem 2rem;
-    margin-top: 1rem;
+    padding: 0 2rem 1.5rem;
+    margin-top: 0;
     position: relative;
     flex: 1;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 8, 5, 0) 0%,
+      rgba(10, 8, 5, 0.4) 8%,
+      rgba(10, 8, 5, 0.75) 20%,
+      rgba(10, 8, 5, 0.92) 40%,
+      rgba(10, 8, 5, 0.96) 100%
+    );
   }
 
   .board-inner {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
-    position: relative;
     width: 100%;
   }
 
-  .connecting-lines {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .board-cards {
+  /* ── Fan Layout ── */
+  .board-fan {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    position: relative;
-    z-index: 1;
+    padding: 1rem 0 0.5rem;
   }
 
-  /* Card */
-  .case-card {
+  /* ── Card ── */
+  .product-card {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 24%;
-    margin: 0 -2px;
-    border-radius: 14px;
+    border-radius: 6px;
+    overflow: hidden;
     text-decoration: none;
     color: inherit;
-    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-    overflow: hidden;
-    border: 1px solid var(--bdr);
-    background: linear-gradient(180deg, rgba(28, 26, 22, 0.85) 0%, rgba(18, 16, 12, 0.95) 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(12, 10, 6, 0.9);
+    border: 1px solid rgba(227, 171, 113, 0.22);
+    aspect-ratio: 3 / 4.2;
+    width: 255px;
+    flex-shrink: 0;
+    margin: 0 -10px;
     box-shadow:
-      0 8px 24px -4px rgba(0, 0, 0, 0.6),
-      0 16px 40px -8px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    touch-action: pan-y;
-    -webkit-tap-highlight-color: transparent;
+      0 8px 32px rgba(0, 0, 0, 0.5),
+      0 2px 8px rgba(0, 0, 0, 0.3),
+      inset 0 0 60px rgba(0, 0, 0, 0.4);
+
+    /* Fan position */
+    transform: rotate(var(--angle)) translateY(var(--lift));
+    transform-origin: 50% 100%;
+
+    /* Entrance animation */
+    animation: deal-card 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation-delay: var(--delay);
+
+    /* Hover transition (active after animation completes) */
+    transition:
+      transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
+      box-shadow 0.45s ease,
+      border-color 0.45s ease,
+      filter 0.35s ease;
   }
 
+  /* Stacking order: left-to-right, like a dealt hand */
+  .product-card:nth-child(1) { z-index: 1; }
+  .product-card:nth-child(2) { z-index: 2; }
+  .product-card:nth-child(3) { z-index: 3; }
+  .product-card:nth-child(4) { z-index: 4; }
 
-
-  /* Arc: outer cards lower + rotated, inner cards higher */
-  .case-card[data-card="0"] { transform: rotate(-2.5deg) translateY(14px); z-index: 1; }
-  .case-card[data-card="1"] { transform: rotate(-0.5deg) translateY(-8px); z-index: 2; }
-  .case-card[data-card="2"] { transform: rotate(0.5deg) translateY(-8px); z-index: 2; }
-  .case-card[data-card="3"] { transform: rotate(2.5deg) translateY(14px); z-index: 1; }
-
-  .case-card:hover {
-    transform: rotate(0deg) translateY(-16px) scale(1.04);
-    box-shadow:
-      0 24px 60px -10px rgba(0, 0, 0, 0.8),
-      0 0 0 1px var(--bdr),
-      0 0 40px -12px var(--bdr),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    z-index: 10;
+  /* Inner decorative border */
+  .product-card::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(227, 171, 113, 0.18);
+    border-radius: 3px;
+    z-index: 3;
+    pointer-events: none;
+    transition: border-color 0.45s ease;
   }
 
-  /* Image */
-  .case-image {
-    position: relative;
+  /* ── Deal entrance animation ── */
+  @keyframes deal-card {
+    from {
+      opacity: 0;
+      transform: rotate(0deg) translateY(60px) scale(0.9);
+    }
+  }
+
+  /* ── Hover: pick up the card ── */
+  .product-card:hover {
+    transform: rotate(0deg) translateY(-50px) scale(1.08);
+    z-index: 20;
+    border-color: rgba(227, 171, 113, 0.55);
+    box-shadow:
+      0 40px 80px rgba(0, 0, 0, 0.7),
+      0 0 60px -4px rgba(227, 171, 113, 0.2),
+      0 0 120px -8px rgba(227, 171, 113, 0.1),
+      inset 0 0 40px rgba(227, 171, 113, 0.05);
+  }
+
+  .product-card:hover::before {
+    border-color: rgba(227, 171, 113, 0.35);
+  }
+
+  /* Dim siblings when one card is hovered */
+  .board-fan:hover .product-card:not(:hover) {
+    filter: brightness(0.75) saturate(0.8);
+  }
+
+  /* ── Corner Ornaments ── */
+  .corner-ornament {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    color: rgba(227, 171, 113, 0.45);
+    z-index: 4;
+    pointer-events: none;
+    transition: color 0.45s ease, filter 0.45s ease;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+  }
+
+  .top-left { top: 6px; left: 6px; }
+  .top-right { top: 6px; right: 6px; }
+  .bottom-left { bottom: 6px; left: 6px; }
+  .bottom-right { bottom: 6px; right: 6px; }
+
+  .product-card:hover .corner-ornament {
+    color: rgba(227, 171, 113, 0.8);
+    filter: drop-shadow(0 0 4px rgba(227, 171, 113, 0.3));
+  }
+
+  /* ── Thematic Icon ── */
+  .card-icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 28px;
+    height: 28px;
+    color: rgba(227, 171, 113, 0.55);
+    z-index: 4;
+    pointer-events: none;
+    transition: all 0.45s ease;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
+  }
+
+  .card-icon svg {
     width: 100%;
-    aspect-ratio: 5 / 4;
-    overflow: hidden;
+    height: 100%;
   }
 
-  .case-image img {
+  .product-card:hover .card-icon {
+    color: rgba(227, 171, 113, 0.9);
+    transform: scale(1.15);
+  }
+
+  /* ── Image ── */
+  .card-img {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .card-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.6s ease;
+    filter: saturate(0.85) brightness(0.95);
   }
 
-  .case-card:hover .case-image img {
-    transform: scale(1.05);
+  .product-card:hover .card-img img {
+    transform: scale(1.06);
+    filter: saturate(1) brightness(1);
   }
 
-  /* Stronger gradient for text readability */
-  .case-image-overlay {
+  .card-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.08) 0%,
-      rgba(0, 0, 0, 0.25) 35%,
-      rgba(21, 19, 14, 0.85) 72%,
-      rgba(21, 19, 14, 1) 100%
+      rgba(0,0,0,0.08) 0%,
+      rgba(0,0,0,0.05) 20%,
+      rgba(10,8,4,0.6) 42%,
+      rgba(10,8,4,0.88) 58%,
+      rgba(10,8,4,0.97) 75%,
+      rgba(10,8,4,1) 100%
     );
-    pointer-events: none;
+    transition: opacity 0.5s ease;
   }
 
-  /* File label & stamp */
-  .case-header {
+  .product-card:hover .card-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.04) 0%,
+      rgba(0,0,0,0.02) 20%,
+      rgba(10,8,4,0.55) 42%,
+      rgba(10,8,4,0.85) 58%,
+      rgba(10,8,4,0.96) 75%,
+      rgba(10,8,4,1) 100%
+    );
+  }
+
+  /* ── Body ── */
+  .card-body {
     position: absolute;
-    top: 0.6rem;
-    left: 0.6rem;
-    right: 0.6rem;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 1.2rem 1.2rem;
     z-index: 2;
-  }
-
-  .case-file {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.65);
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
-    padding: 0.15rem 0.4rem;
-    border-radius: 3px;
-  }
-
-  .case-label {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
-    font-size: 0.5rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: #cc4444;
-    padding: 0.15rem: 0.45rem;
-    border: 1.5px solid #cc4444;
-    border-radius: 2px;
-    transform: rotate(-4deg);
-    opacity: 0.85;
-    background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(4px);
-  }
-
-  /* Title on image */
-  .case-name {
-    position: absolute;
-    bottom: 0.35rem;
-    left: 0.75rem;
-    right: 0.75rem;
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--foreground);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    z-index: 2;
-    margin: 0;
-    text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.5);
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-
-  .case-card:hover .case-name { 
-    color: var(--bdr); 
-    transform: translateY(-2px);
-  }
-
-  /* Body — improved readability */
-  .case-body {
-    padding: 0.5rem 0.75rem 0.85rem;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
   }
 
-  .case-subtitle {
+  .card-body::before {
+    content: '';
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 60%;
+    background: radial-gradient(ellipse, rgba(227, 171, 113, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
+
+  .product-card:hover .card-body::before {
+    opacity: 1;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.9), 0 4px 16px rgba(0,0,0,0.6);
+    transition: color 0.3s ease;
+  }
+
+  .product-card:hover .card-title {
+    color: var(--gold-light);
+  }
+
+  /* ── Decorative Divider ── */
+  .card-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.4rem 0 0.35rem;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(227, 171, 113, 0.45), transparent);
+  }
+
+  .divider-line:last-child {
+    background: linear-gradient(90deg, transparent, rgba(227, 171, 113, 0.45));
+  }
+
+  .divider-glyph {
+    width: 10px;
+    height: 10px;
+    color: rgba(227, 171, 113, 0.55);
+    flex-shrink: 0;
+    transition: all 0.5s ease;
+  }
+
+  .product-card:hover .divider-glyph {
+    color: rgba(227, 171, 113, 0.85);
+    transform: rotate(45deg);
+  }
+
+  .product-card:hover .divider-line {
+    background: linear-gradient(90deg, rgba(227, 171, 113, 0.7), rgba(227, 171, 113, 0.12));
+  }
+
+  .product-card:hover .divider-line:last-child {
+    background: linear-gradient(90deg, rgba(227, 171, 113, 0.12), rgba(227, 171, 113, 0.7));
+  }
+
+  .card-sub {
     font-family: 'Space Grotesk', system-ui, sans-serif;
-    font-size: 0.55rem;
+    font-size: 0.62rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--muted-foreground);
-    opacity: 0.6;
-    margin-bottom: 0.35rem;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
   }
 
-  .case-desc {
-    font-size: 0.82rem;
-    color: var(--foreground-muted);
+  .card-desc {
+    font-size: 0.88rem;
+    color: #ede9dd;
     line-height: 1.5;
-    flex-grow: 1;
-    margin-bottom: 0.6rem;
+    margin: 0 0 0.75rem;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
   }
 
-  .case-cta {
+  .card-cta {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
     font-family: 'Space Grotesk', system-ui, sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--muted-foreground);
-    transition: all var(--transition-fast);
+    color: rgba(227, 171, 113, 0.75);
+    transition: all 0.3s ease;
+    padding: 0.4rem 0;
+    border-top: 1px solid rgba(227, 171, 113, 0.15);
+    margin-top: auto;
   }
 
-  .case-card:hover .case-cta {
-    color: var(--bdr);
-    gap: 0.65rem;
+  .product-card:hover .card-cta {
+    color: var(--gold);
+    gap: 0.6rem;
+    border-top-color: rgba(227, 171, 113, 0.4);
   }
 
-  /* Responsive */
+  .card-cta svg {
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover .card-cta svg {
+    transform: translateX(3px);
+  }
+
+  /* ── Tablet: 2-col grid, no fan ── */
   @media (max-width: 1024px) {
-    .board-cards {
-      flex-wrap: wrap;
+    .board-fan {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.25rem;
-      justify-content: center;
+      padding: 0;
     }
-    .case-card {
-      width: 45%;
+
+    .product-card {
+      width: auto;
       margin: 0;
+      transform: none !important;
+      animation: none;
+      opacity: 1;
+      aspect-ratio: 3 / 4;
     }
-    .case-card[data-card="0"],
-    .case-card[data-card="1"],
-    .case-card[data-card="2"],
-    .case-card[data-card="3"] {
-      transform: none;
+
+    .product-card:nth-child(1),
+    .product-card:nth-child(2),
+    .product-card:nth-child(3),
+    .product-card:nth-child(4) {
+      z-index: auto;
     }
-    .connecting-lines { display: none; }
+
+    .product-card:hover {
+      transform: translateY(-8px) scale(1.02) !important;
+      z-index: 10;
+    }
+
+    .board-fan:hover .product-card:not(:hover) {
+      filter: none;
+    }
   }
 
+  /* ── Mobile ── */
   @media (max-width: 640px) {
     .board {
-      padding: 0 0.75rem 1rem;
+      padding: 0.75rem 0.75rem 1rem;
       margin-top: 0;
       flex: none;
     }
-    .board-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.625rem;
+
+    .board-fan {
+      gap: 0.75rem;
     }
-    .case-card {
-      width: 100%;
-      margin: 0;
-      border-radius: 10px;
+
+    .product-card {
+      aspect-ratio: 3 / 4.5;
+      border-radius: 3px;
     }
-    .case-image {
-      aspect-ratio: 4 / 3;
+
+    .product-card::before {
+      inset: 3px;
     }
-    .case-image-overlay {
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.05) 0%,
-        rgba(0, 0, 0, 0.15) 30%,
-        rgba(21, 19, 14, 0.8) 65%,
-        rgba(21, 19, 14, 1) 100%
-      );
+
+    .corner-ornament {
+      width: 18px;
+      height: 18px;
     }
-    .case-header {
-      top: 0.4rem;
-      left: 0.4rem;
-      right: 0.4rem;
+
+    .top-left { top: 4px; left: 4px; }
+    .top-right { top: 4px; right: 4px; }
+    .bottom-left { bottom: 4px; left: 4px; }
+    .bottom-right { bottom: 4px; right: 4px; }
+
+    .card-icon {
+      width: 16px;
+      height: 16px;
+      top: 10px;
+      right: 10px;
     }
-    .case-file {
-      font-size: 0.5rem;
-      padding: 0.1rem 0.3rem;
+
+    .card-title {
+      font-size: 1.15rem;
     }
-    .case-label {
-      font-size: 0.4rem;
-      padding: 0.1rem 0.3rem;
+
+    .card-body {
+      padding: 0.5rem 0.65rem 0.7rem;
     }
-    .case-name {
-      font-size: 1.1rem;
-      bottom: 0.2rem;
-      left: 0.5rem;
-      right: 0.5rem;
+
+    .card-divider {
+      margin: 0.2rem 0 0.15rem;
     }
-    .case-body {
-      padding: 0.35rem 0.5rem 0.5rem;
+
+    .divider-glyph {
+      width: 6px;
+      height: 6px;
     }
-    .case-subtitle {
-      font-size: 0.45rem;
+
+    .card-sub {
+      font-size: 0.48rem;
       margin-bottom: 0.2rem;
     }
-    .case-desc {
+
+    .card-desc {
       display: none;
     }
-    .case-cta {
+
+    .card-cta {
       font-size: 0.6rem;
     }
-    .case-card:hover { transform: translateY(-2px); }
+
+    .product-card:hover {
+      transform: translateY(-2px) !important;
+    }
   }
 </style>

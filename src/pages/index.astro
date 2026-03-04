@@ -7,7 +7,7 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
-  <!-- Page-level world map background -->
+  <!-- Fixed background stack -->
   <div class="page-bg" aria-hidden="true">
     <picture>
       <source media="(max-width: 768px)" srcset="/Landing_mobile.webp" type="image/webp" />
@@ -15,8 +15,13 @@ import Footer from '../components/Footer.astro';
       <source srcset="/Landing.webp" type="image/webp" />
       <img src="/Landing.png" alt="" />
     </picture>
-    <div class="page-bg-overlay"></div>
+    <div class="vignette-radial"></div>
+    <div class="vignette-top"></div>
+    <div class="vignette-bottom"></div>
   </div>
+
+  <!-- Desk overlay band -->
+  <div class="desk-band" aria-hidden="true"></div>
 
   <Nav />
   <main class="page-main">
@@ -24,9 +29,19 @@ import Footer from '../components/Footer.astro';
     <Board />
   </main>
   <Footer />
+
+  <!-- Decorative corner glyph -->
+  <div class="corner-glyph" aria-hidden="true">
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M60 0L66 50L120 60L66 70L60 120L54 70L0 60L54 50Z" fill="currentColor" opacity="0.5"/>
+      <path d="M60 20L63 54L100 60L63 66L60 100L57 66L20 60L57 54Z" fill="currentColor" opacity="0.25"/>
+      <path d="M60 42L65 57L80 60L65 63L60 78L55 63L40 60L55 57Z" fill="currentColor" opacity="0.4"/>
+    </svg>
+  </div>
 </Layout>
 
 <style>
+  /* ── Background stack ── */
   .page-bg {
     position: fixed;
     inset: 0;
@@ -39,16 +54,55 @@ import Footer from '../components/Footer.astro';
     height: 100%;
     object-fit: cover;
     object-position: center top;
+    filter: blur(1px);
+    transform: scale(1.02); /* prevent blur edge artifacts */
   }
 
-  .page-bg-overlay {
+  .vignette-radial {
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(to bottom, rgba(14, 13, 12, 0.82) 0%, rgba(14, 13, 12, 0.65) 30%, rgba(14, 13, 12, 0.65) 55%, rgba(14, 13, 12, 0.88) 80%, rgba(14, 13, 12, 0.97) 100%),
-      radial-gradient(ellipse at 50% 35%, transparent 0%, rgba(14, 13, 12, 0.55) 50%, rgba(14, 13, 12, 0.9) 100%);
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.1) 25%, rgba(0,0,0,0.75) 100%);
   }
 
+  .vignette-top {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0) 30%);
+  }
+
+  .vignette-bottom {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,8,5,1) 0%, rgba(10,8,5,0.97) 12%, rgba(10,8,5,0.85) 28%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0) 68%);
+  }
+
+  /* ── Desk band ── */
+  .desk-band {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 280px;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        rgba(75, 58, 31, 0.03) 0px,
+        rgba(75, 58, 31, 0.06) 2px,
+        transparent 2px,
+        transparent 8px
+      ),
+      linear-gradient(
+        to top,
+        #0a0805 0%,
+        #12100a 30%,
+        #16130c 60%,
+        transparent 100%
+      );
+  }
+
+  /* ── Main content ── */
   .page-main {
     position: relative;
     z-index: 1;
@@ -58,23 +112,56 @@ import Footer from '../components/Footer.astro';
     padding-top: 56px;
   }
 
+  /* ── Corner glyph ── */
+  .corner-glyph {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 80px;
+    height: 80px;
+    color: rgba(227, 171, 113, 0.06);
+    pointer-events: none;
+    z-index: 2;
+    animation: glyph-rotate 90s linear infinite;
+  }
+
+  .corner-glyph svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @keyframes glyph-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* ── Mobile ── */
   @media (max-width: 768px) {
     .page-bg {
       position: absolute;
     }
+
+    .page-bg img {
+      min-height: 100svh;
+      object-position: center center;
+    }
+
     .page-main {
       flex: 1;
       justify-content: flex-start;
       padding-top: 10vh;
     }
-    .page-bg img {
-      min-height: 100svh;
-      object-position: center center;
+
+    .desk-band {
+      position: absolute;
+      height: 200px;
     }
-    .page-bg-overlay {
-      background:
-        linear-gradient(to bottom, rgba(14, 13, 12, 0.7) 0%, rgba(14, 13, 12, 0.5) 20%, rgba(14, 13, 12, 0.5) 45%, rgba(14, 13, 12, 0.7) 70%, rgba(14, 13, 12, 0.88) 100%),
-        radial-gradient(ellipse at 50% 30%, transparent 0%, rgba(14, 13, 12, 0.4) 50%, rgba(14, 13, 12, 0.75) 100%);
+
+    .corner-glyph {
+      width: 50px;
+      height: 50px;
+      bottom: 12px;
+      right: 12px;
     }
   }
 </style>

@@ -1,47 +1,71 @@
 /*
   HistorIQly HQ — Shared Design Tokens
+  Warm cinematic palette with gold accents
 */
 
 @import "tailwindcss";
 
 @layer base {
   :root {
+    /* Warm base palette */
+    --bg-0: #0f0c08;
+    --bg-nav: #16150f;
+    --panel: #28261f;
+
+    /* Brand green (CTA) */
     --primary: #5DB585;
     --primary-dim: rgba(93, 181, 133, 0.08);
     --primary-hover: #6FC494;
     --primary-glow: rgba(93, 181, 133, 0.25);
+    --cta-green: #2a4c37;
 
+    /* Gold accent system */
+    --gold: #e3ab71;
+    --gold-light: #f3e3c6;
+    --gold-dk: #4b3a1f;
+    --gold-glow: rgba(227, 171, 113, 0.28);
+    --gold-border: rgba(227, 171, 113, 0.25);
+
+    /* Teal (kept for compatibility) */
     --teal: #14b8a6;
     --teal-glow: rgba(20, 184, 166, 0.3);
     --teal-dim: rgba(20, 184, 166, 0.08);
 
-    --background: #0e0d0c;
-    --surface: #141210;
-    --surface-elevated: #1a1815;
-    --surface-hover: #222222;
+    /* Surfaces */
+    --background: #0f0c08;
+    --surface: #1a1815;
+    --surface-elevated: #222019;
+    --surface-hover: #2a2720;
 
-    --foreground: #e8e6e3;
-    --foreground-muted: #c4c0ba;
-    --border: rgba(255, 255, 255, 0.06);
-    --border-strong: rgba(255, 255, 255, 0.12);
-    --muted: #888;
+    /* Text */
+    --foreground: #ede9dd;
+    --foreground-muted: #d2cbc1;
+    --muted: #7b7262;
     --muted-foreground: #a09a92;
 
+    /* Borders */
+    --border: rgba(255, 255, 255, 0.06);
+    --border-strong: rgba(255, 255, 255, 0.12);
+
+    /* Radius */
     --radius-s: 8px;
     --radius-m: 16px;
     --radius-l: 24px;
 
+    /* Shadows */
     --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
     --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.5);
     --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.6);
-    --shadow-glow: 0 0 60px var(--teal-glow);
+    --shadow-glow: 0 0 60px var(--gold-glow);
 
+    /* Transitions */
     --transition-fast: 200ms cubic-bezier(0.2, 0, 0, 1);
     --transition-base: 350ms cubic-bezier(0.2, 0, 0, 1);
   }
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
@@ -82,22 +106,18 @@
     }
   }
 
-  html {
-    overflow-x: hidden;
-  }
-
   a {
-    color: var(--primary);
+    color: var(--gold);
     text-decoration: none;
     transition: color var(--transition-fast);
   }
 
   a:hover {
-    color: var(--primary-hover);
+    color: var(--gold-light);
   }
 
   ::selection {
-    background: rgba(20, 184, 166, 0.2);
+    background: rgba(227, 171, 113, 0.2);
     color: #fff;
   }
 }

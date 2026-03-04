@@ -13,11 +13,23 @@ const links = [
       <span class="brand-name">Histor<span class="brand-iq">IQ</span>ly</span>
     </a>
 
+    <!-- Ornamental separator -->
+    <span class="nav-sep" aria-hidden="true">
+      <svg viewBox="0 0 16 16" fill="currentColor">
+        <path d="M8 2L9.5 6.5L14 8L9.5 9.5L8 14L6.5 9.5L2 8L6.5 6.5Z" />
+      </svg>
+    </span>
+
     <nav class="nav-links" id="navLinks">
-      {links.map((link) => (
-        <a href={link.href} class="nav-link" target="_blank" rel="noopener">
-          {link.label}
-        </a>
+      {links.map((link, i) => (
+        <>
+          <a href={link.href} class="nav-link" target="_blank" rel="noopener">
+            {link.label}
+          </a>
+          {i < links.length - 1 && (
+            <span class="link-dot" aria-hidden="true"></span>
+          )}
+        </>
       ))}
     </nav>
 
@@ -27,6 +39,7 @@ const links = [
       <span></span>
     </button>
   </div>
+
 </header>
 
 <script>
@@ -46,12 +59,13 @@ const links = [
     left: 0;
     right: 0;
     height: 56px;
-    background: rgba(14, 13, 12, 0.35);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(15, 12, 8, 0.6);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(227, 171, 113, 0.08);
     z-index: 100;
   }
+
 
   .nav-inner {
     max-width: 1200px;
@@ -60,7 +74,7 @@ const links = [
     padding: 0 1.5rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 0;
   }
 
   .nav-brand {
@@ -78,28 +92,65 @@ const links = [
   }
 
   .brand-iq {
-    color: var(--teal);
+    background: linear-gradient(180deg, #f3e3c6 0%, #e3ab71 55%, #b97a37 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Star glyph separator between brand and links */
+  .nav-sep {
+    display: flex;
+    align-items: center;
+    margin: 0 1.25rem;
+  }
+
+  .nav-sep svg {
+    width: 8px;
+    height: 8px;
+    color: rgba(227, 171, 113, 0.3);
+    animation: slow-rotate 20s linear infinite;
+  }
+
+  @keyframes slow-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 0;
+    margin-left: auto;
+  }
+
+  /* Small gold dot between links */
+  .link-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(227, 171, 113, 0.25);
+    margin: 0 1rem;
+    flex-shrink: 0;
   }
 
   .nav-link {
     color: var(--muted-foreground);
     text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
     padding-bottom: 2px;
-    border-bottom: 2px solid transparent;
+    border-bottom: 1px solid transparent;
     transition: color var(--transition-fast), border-color var(--transition-fast);
+    position: relative;
   }
 
   .nav-link:hover {
-    color: var(--foreground);
-    border-bottom-color: var(--primary);
+    color: var(--gold-light);
+    border-bottom-color: var(--gold);
   }
 
   .nav-toggle {
@@ -113,13 +164,14 @@ const links = [
     border: none;
     cursor: pointer;
     padding: 4px;
+    margin-left: auto;
   }
 
   .nav-toggle span {
     display: block;
     width: 100%;
     height: 2px;
-    background: var(--foreground);
+    background: var(--gold);
     transition: all 0.3s;
     border-radius: 1px;
   }
@@ -137,6 +189,10 @@ const links = [
   }
 
   @media (max-width: 768px) {
+    .nav-sep {
+      display: none;
+    }
+
     .nav-links {
       display: none;
       position: absolute;
@@ -144,27 +200,39 @@ const links = [
       left: 0;
       right: 0;
       flex-direction: column;
-      background: rgba(14, 13, 12, 0.95);
+      background: rgba(15, 12, 8, 0.95);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      padding: 1.5rem;
-      gap: 1rem;
-      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      gap: 0;
+      border-bottom: 1px solid rgba(227, 171, 113, 0.12);
     }
 
     .nav {
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
-      background: rgba(14, 13, 12, 0.85);
+      background: rgba(15, 12, 8, 0.88);
     }
 
     .nav-links.open {
       display: flex;
     }
 
+    .link-dot {
+      display: none;
+    }
+
     .nav-link {
-      font-size: 1rem;
-      padding: 0.5rem 0;
+      font-size: 0.85rem;
+      padding: 0.6rem 0;
+      border-bottom: none;
+      width: 100%;
+      text-align: center;
+    }
+
+    .nav-link:hover {
+      border-bottom: none;
+      color: var(--gold);
     }
 
     .nav-toggle {
