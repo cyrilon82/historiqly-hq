@@ -12,12 +12,12 @@
     --bg-nav: #16150f;
     --panel: #28261f;
 
-    /* Brand green (CTA) */
-    --primary: #5DB585;
-    --primary-dim: rgba(93, 181, 133, 0.08);
-    --primary-hover: #6FC494;
-    --primary-glow: rgba(93, 181, 133, 0.25);
-    --cta-green: #2a4c37;
+    /* Brand gold (CTA) */
+    --primary: #967E67;
+    --primary-dim: rgba(150, 126, 103, 0.08);
+    --primary-hover: #A68E78;
+    --primary-glow: rgba(150, 126, 103, 0.25);
+    --cta-green: #3a3028;
 
     /* Gold accent system */
     --gold: #e3ab71;
