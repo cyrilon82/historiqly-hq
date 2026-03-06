@@ -1,11 +1,6 @@
 ---
 const year = new Date().getFullYear();
 
-const footerLinks = [
-  { label: "Contact", href: "mailto:hello@historiqly.com" },
-  { label: "About", href: "https://historiqly.com/about" },
-  { label: "Privacy", href: "https://historiqly.com/privacy" },
-];
 ---
 
 <footer class="footer">
@@ -15,16 +10,11 @@ const footerLinks = [
       <span class="footer-copy">&copy; {year} &middot; AI-curated content</span>
     </p>
     <nav class="footer-links">
-      {footerLinks.map((link, i) => (
-        <>
-          <a href={link.href} class="footer-link">{link.label}</a>
-          {i < footerLinks.length - 1 && (
-            <svg class="footer-glyph" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-              <path d="M8 2L9.5 6.5L14 8L9.5 9.5L8 14L6.5 9.5L2 8L6.5 6.5Z" />
-            </svg>
-          )}
-        </>
-      ))}
+      <a href="https://x.com/historiqly" target="_blank" rel="noopener" class="footer-link footer-x" aria-label="Follow @historiqly on X">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
     </nav>
   </div>
 </footer>
@@ -96,6 +86,10 @@ const footerLinks = [
 
   .footer-link:hover {
     color: var(--gold);
+  }
+
+  .footer-x svg {
+    display: block;
   }
 
   .footer-glyph {
